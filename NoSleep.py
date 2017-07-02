@@ -30,12 +30,13 @@
 #
 # For more information, please refer to <http://unlicense.org>
 
-
-
+from __future__ import print_function
 import ctypes
 import ctypes.wintypes
 import random
 import time
+
+
 """
 
 https://msdn.microsoft.com/en-us/library/windows/desktop/aa373208(v=vs.85).aspx
@@ -60,13 +61,14 @@ def get_cursor_pos():
     ctypes.windll.user32.GetCursorPos(ctypes.byref(obj_point))
     return obj_point.x, obj_point.y
 
-def set_cursor_pos(x=0,y=0):
-    return ctypes.windll.user32.SetCursorPos(x,y)
+
+def set_cursor_pos(x=0, y=0):
+    return ctypes.windll.user32.SetCursorPos(x, y)
 
 
 def random_move_cursor():
-    cur_x,cur_y = get_cursor_pos()
-    set_cursor_pos(cur_x+random.randint(-1, 1), cur_y+random.randint(-1, 1))
+    cur_x, cur_y = get_cursor_pos()
+    set_cursor_pos(cur_x + random.randint(-1, 1), cur_y + random.randint(-1, 1))
 
 
 if __name__ == "__main__":
@@ -74,7 +76,7 @@ if __name__ == "__main__":
     i = 0
     p = ['|', '/', '-', '\\']
     while True:
-        print '\r' + p[i%4],
+        print('\r' + p[i % 4], end="")
         time.sleep(5)
         random_move_cursor()
         i += 1
